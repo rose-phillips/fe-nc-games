@@ -20,7 +20,7 @@
               -110.49
             ],
             "rotation": 0,
-            "text": "routes\n \nreview list is homepage:  /home\n \nfiltered by category:  /home?category=dexterity\n \nsingle game review: /review_id\n \nlogin page: /login\n \nuser account: /account",
+            "text": "routes\n \nreview list is homepage:  /home\n \nfiltered by category:  /home?category=dexterity\n \nsingle game review: /reviews/review_id\n \nlogin page: /login\n \nuser account: /account",
             "style": {
               "color": "lightGray",
               "size": "small",
