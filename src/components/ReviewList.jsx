@@ -1,9 +1,12 @@
 import { React, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { getReviews } from "../utils/api";
 
 function Reviewlist() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getReviews().then((reviewsFromApi) => {
@@ -12,6 +15,10 @@ function Reviewlist() {
     });
   }, []);
 
+  function handleClick(reviewId) {
+    navigate(`/reviews/${reviewId}`);
+  }
+
   return loading ? (
     <p>... reviews loading</p>
   ) : (
@@ -19,7 +26,7 @@ function Reviewlist() {
       <ul className="reviewlist--list">
         {reviews.map((review) => {
           return (
-            <div className="reviewlist--reviewbox">
+            <div className="reviewlist--reviewbox" key={review.review_id}>
               <li className="reviewlist--game" key={review.review_id}>
                 <div className="reviewlist--title-author-box">
                   <p className="reviewlist--author">
@@ -33,12 +40,18 @@ function Reviewlist() {
                   </p>
                 </div>
 
+                <button
+                  onClick={() => handleClick(review.review_id)}
+                  className="reviewlist--button"
+                >
+                  Read more
+                </button>
+
                 <img
                   className="reviewlist--img"
                   src={review.review_img_url}
                   alt={review.designer}
                 />
-                <button className="reviewlist--button">Read review</button>
 
                 <div className="reviewlist--comment-vote-box">
                   <div className="reviewlist--comments-box">

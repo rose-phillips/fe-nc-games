@@ -1,14 +1,22 @@
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/Header";
 import ReviewList from "./components/ReviewList";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SingleReview from "./components/SingleReview";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <ReviewList />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<ReviewList />} />
+          <Route path="/reviews/:review_id" element={<SingleReview />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
