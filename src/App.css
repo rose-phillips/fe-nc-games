@@ -1,3 +1,96 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+}
+
+header {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.boardom-header h1 {
+  font-size: 64px;
+}
+
+/* HOMEPAGE */
+
+.reviewlist {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.reviewlist--list {
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reviewlist--reviewbox {
+  width: 300px;
+  margin: 15px;
+  padding: 10px;
+  border: 2px solid chartreuse;
+  border-radius: 3px;
+  list-style-type: none;
+}
+
+.reviewlist--title-author-box {
+  height: 150px;
+}
+
+.reviewlist--author {
+  margin-bottom: 5px;
+  color: #666;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.reviewlist--title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.reviewlist--body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 20px;
+  max-height: 150px;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.reviewlist--img {
+  border-radius: 8px;
+  width: 250px;
+  height: 100px;
+  object-fit: cover;
+  margin: 5px;
+}
+
+.reviewlist--button {
+  margin: 10px 0 15px 0;
+  padding: 5px 12px;
+  background-color: #222;
+  color: #fff;
+  font-size: 12px;
+  border: 2px solid #449dd1;
+  border-radius: 50px;
+}
+
+.reviewlist--comment-vote-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 12px;
 }
