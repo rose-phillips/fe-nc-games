@@ -9,6 +9,7 @@
 }
 
 header {
+  margin-top: 10px;
   margin-bottom: 40px;
 }
 
@@ -34,7 +35,7 @@ header {
 }
 
 .reviewlist--reviewbox {
-  width: 200px;
+  width: 300px;
   margin: 15px;
   padding: 10px;
   border: 2px solid chartreuse;
@@ -43,20 +44,7 @@ header {
 }
 
 .reviewlist--title-author-box {
-  height: 70px;
-}
-
-.reviewlist--title {
-  margin-bottom: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  line-height: 20px;
-  max-height: 40px;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  height: 150px;
 }
 
 .reviewlist--author {
@@ -66,9 +54,25 @@ header {
   font-style: italic;
 }
 
+.reviewlist--title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.reviewlist--body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 20px;
+  max-height: 150px;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
 .reviewlist--img {
   border-radius: 8px;
-  width: 150px;
+  width: 250px;
   height: 100px;
   object-fit: cover;
   margin: 5px;

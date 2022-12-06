@@ -3,14 +3,18 @@ import { getReviews } from "../utils/api";
 
 function Reviewlist() {
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getReviews().then((reviewsFromApi) => {
       setReviews(reviewsFromApi);
+      setLoading(false);
     });
   }, []);
 
-  return (
+  return loading ? (
+    <p>... reviews loading</p>
+  ) : (
     <div className="reviewlist">
       <ul className="reviewlist--list">
         {reviews.map((review) => {
@@ -18,9 +22,14 @@ function Reviewlist() {
             <div className="reviewlist--reviewbox">
               <li className="reviewlist--game" key={review.review_id}>
                 <div className="reviewlist--title-author-box">
-                  <p className="reviewlist--title">"{review.title}"</p>
                   <p className="reviewlist--author">
                     review by: {review.owner}
+                  </p>
+
+                  <p className="reviewlist--body">
+                    <span className="reviewlist--title">"{review.title}"</span>
+                    <br></br>
+                    {review.review_body}
                   </p>
                 </div>
 
