@@ -6,19 +6,23 @@ import moment from "moment";
 function SingleReview() {
   const { review_id } = useParams();
   const [singleReview, setSingleReview] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getSingleReview(review_id).then((singleReviewFromApi) => {
       setSingleReview(singleReviewFromApi);
+      setLoading(false);
     });
-  }, [review_id, singleReview]);
+  }, [review_id]);
 
-  return (
+  return loading ? (
+    <p>... review loading</p>
+  ) : (
     <main className="singlereview">
       <div className="singlereview--owner-category-box">
         <div className="singlereview--owner-box">
           <p className="singlereview--owner">
-            reviewed by: {singleReview.owner},{" "}
+            review by: {singleReview.owner},{" "}
             {moment(singleReview.created_at, "YYYYMMDD").fromNow()}.
           </p>
         </div>
