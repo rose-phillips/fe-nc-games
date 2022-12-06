@@ -18,7 +18,7 @@ function SingleReview() {
       <div className="singlereview--owner-category-box">
         <div className="singlereview--owner-box">
           <p className="singlereview--owner">
-            review by: {singleReview.owner},{" "}
+            reviewed by: {singleReview.owner},{" "}
             {moment(singleReview.created_at, "YYYYMMDD").fromNow()}.
           </p>
         </div>
