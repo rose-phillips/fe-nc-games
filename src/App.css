@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .App {
   text-align: center;
 }
@@ -79,7 +83,7 @@ header {
 }
 
 .reviewlist--button {
-  margin: 10px 0 15px 0;
+  margin: 0 0 15px 0;
   padding: 5px 12px;
   background-color: #222;
   color: #fff;
@@ -93,4 +97,92 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   font-size: 12px;
+}
+
+/* SINGLE REVIEW PAGE */
+
+.singlereview {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.singlereview--figure-box {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.singlereview--img {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 20px;
+  max-width: 100%;
+}
+
+.singlereview--figcaption {
+  max-width: 100%;
+  font-size: 12px;
+  color: #666;
+  text-align: left;
+}
+
+.singlereview--title {
+  margin-bottom: 15px;
+}
+
+.singlereview--comment-vote-box {
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.singlereview--comments-box {
+  border: 1px solid chartreuse;
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+
+.singlereview--votes-box {
+  border: 1px solid chartreuse;
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+
+.singlereview--comment-box {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #449dd1;
+  border-radius: 5px;
+
+  background-color: #e6e4e4;
+  text-align: left;
+  font-size: 14px;
+  color: #666;
+}
+
+.singlereview--owner-category-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.singlereview--owner-box {
+  padding: 3px 5px;
+}
+
+.singlereview--category-box {
+  border: 1px solid chartreuse;
+  border-radius: 3px;
+  padding: 3px 5px;
 }
