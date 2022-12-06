@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleReview } from "../utils/api";
+import { getSingleReview, getReviewComments } from "../utils/api";
 import moment from "moment";
+import Comments from "./Comments";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -57,9 +58,8 @@ function SingleReview() {
           <p className="singlereview--votes">👍 {singleReview.votes}</p>
         </div>
       </div>
-      <div className="singlereview--comment-box">
-        <p>...comments will go here</p>
-      </div>
+
+      <Comments />
     </main>
   );
 }
