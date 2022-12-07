@@ -1,11 +1,12 @@
 import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getReviews } from "../utils/api";
+import { getReviews, patchReviewVote } from "../utils/api";
+import moment from "moment";
 
 function Reviewlist() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [err, setErr] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,28 @@ function Reviewlist() {
     navigate(`/reviews/${reviewId}`);
   }
 
+  function handleVote(reviewId) {
+    setReviews((currentReviews) => {
+      return currentReviews.map((review) => {
+        if (review.review_id === reviewId) {
+          return { ...review, votes: review.votes + 1 };
+        }
+        return review;
+      });
+    });
+    patchReviewVote(reviewId).catch((err) => {
+      setErr("sorry, please try again");
+      setReviews((currentReviews) => {
+        return currentReviews.map((review) => {
+          if (review.review_id === reviewId) {
+            return { ...review, votes: review.votes + 1 };
+          }
+          return review;
+        });
+      });
+    });
+  }
+
   return loading ? (
     <p>... reviews loading</p>
   ) : (
@@ -30,7 +53,8 @@ function Reviewlist() {
               <li className="reviewlist--game" key={review.review_id}>
                 <div className="reviewlist--title-author-box">
                   <p className="reviewlist--author">
-                    review by: {review.owner}
+                    {review.owner},{" "}
+                    {moment(review.created_at, "YYYYMMDD").fromNow()}.
                   </p>
 
                   <p className="reviewlist--body">
@@ -60,7 +84,15 @@ function Reviewlist() {
                     </p>
                   </div>
                   <div className="reviewlist--votes-box">
-                    <p className="reviewlist--votes">👍 {review.votes}</p>
+                    <p className="reviewlist--votes">
+                      <button
+                        onClick={() => handleVote(review.review_id)}
+                        className="reviewlist--button-upvote"
+                      >
+                        👍
+                      </button>
+                      {review.votes}
+                    </p>
                   </div>
                 </div>
               </li>

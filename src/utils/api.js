@@ -20,3 +20,12 @@ export const getReviewComments = (reviewId) => {
     return data.comments;
   });
 };
+
+export const patchReviewVote = (reviewId) => {
+  const patchReview = {
+    inc_votes: 1,
+  };
+  return api.patch(`/reviews/${reviewId}`, patchReview).then(({ data }) => {
+    return data.review;
+  });
+};

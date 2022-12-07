@@ -19,7 +19,7 @@ function Comments() {
     <p>...comments loading</p>
   ) : (
     <div className="comments">
-      <h5 className="comments--title">comments</h5>
+      <p className="comments--title">{comments.length} comments</p>
       <ul className="comments--list">
         {comments.map((comment) => {
           return (
