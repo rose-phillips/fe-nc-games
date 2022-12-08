@@ -1,21 +1,22 @@
 import { React, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getReviews, patchReviewVote } from "../utils/api";
 import moment from "moment";
+import thumbblue from "../images/thumb-blue.png";
 
 function Reviewlist() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
   const navigate = useNavigate();
+  const { category } = useParams();
 
   useEffect(() => {
-    getReviews().then((reviewsFromApi) => {
+    getReviews(category).then((reviewsFromApi) => {
       setReviews(reviewsFromApi);
       setLoading(false);
     });
-  }, []);
-
+  }, [category]);
   function handleClick(reviewId) {
     navigate(`/reviews/${reviewId}`);
   }
@@ -52,10 +53,14 @@ function Reviewlist() {
             <div className="reviewlist--reviewbox" key={review.review_id}>
               <li className="reviewlist--game" key={review.review_id}>
                 <div className="reviewlist--title-author-box">
-                  <p className="reviewlist--author">
-                    {review.owner},{" "}
-                    {moment(review.created_at, "YYYYMMDD").fromNow()}.
-                  </p>
+                  <div className="reviewlist--author-category-box">
+                    <p className="reviewlist--author">
+                      {review.owner} posted&nbsp;
+                      {moment(review.created_at).format("MMMM Do YYYY, h:mm a")}
+                      .
+                    </p>
+                    <p className="reviewlist--category">{review.category}</p>
+                  </div>
 
                   <p className="reviewlist--body">
                     <span className="reviewlist--title">"{review.title}"</span>
@@ -89,7 +94,7 @@ function Reviewlist() {
                         onClick={() => handleVote(review.review_id)}
                         className="reviewlist--button-upvote"
                       >
-                        👍
+                        <img src={thumbblue} alt="thumb up" />
                       </button>
                       {review.votes}
                     </p>

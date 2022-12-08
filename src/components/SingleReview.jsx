@@ -1,12 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getSingleReview,
-  getReviewComments,
-  patchReviewVote,
-} from "../utils/api";
+import { getSingleReview, patchReviewVote } from "../utils/api";
 import moment from "moment";
 import Comments from "./Comments";
+import thumbblue from "../images/thumb-blue.png";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -28,18 +25,6 @@ function SingleReview() {
       setErr("sorry, please try again");
       setSingleReview({ ...singleReview, votes: singleReview.votes + 1 });
     });
-
-    // patchReviewVote(reviewId).catch((err) => {
-    //   setErr("sorry, please try again");
-    //   setSingleReview((currentReview) => {
-    //     if (singleReview.review_id === reviewId) {
-    //       console.log(err);
-    //       console.log(singleReview.votes);
-    //       return { ...singleReview, votes: singleReview.votes - 1 };
-    //     }
-    //     return singleReview;
-    //   });
-    // });
   }
 
   return loading ? (
@@ -50,8 +35,9 @@ function SingleReview() {
         <div className="singlereview--owner-category-box">
           <div className="singlereview--owner-box">
             <p className="singlereview--owner">
-              review by: {singleReview.owner},{" "}
-              {moment(singleReview.created_at, "YYYYMMDD").fromNow()}.
+              <span className="underline">{singleReview.owner}</span>{" "}
+              posted&nbsp;
+              {moment(singleReview.created_at).format("MMMM Do YYYY, h:mm a")}.
             </p>
           </div>
           <div className="singlereview--category-box">
@@ -81,7 +67,12 @@ function SingleReview() {
                 onClick={() => handleVote(singleReview.review_id)}
                 className="reviewlist--button-upvote"
               >
-                👍
+                {" "}
+                <img
+                  className="singlereview-thumbsup"
+                  src={thumbblue}
+                  alt="thumb up"
+                />
               </button>
               {singleReview.votes}
             </p>
