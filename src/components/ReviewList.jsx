@@ -55,10 +55,12 @@ function Reviewlist() {
 
                 <div className="reviewlist--comment-vote-box">
                   <div className="reviewlist--comments-box">
-                    <p className="reviewlist--comments">0 comments</p>
+                    <p className="reviewlist--comments">
+                      {review.comment_count} comments
+                    </p>
                   </div>
                   <div className="reviewlist--votes-box">
-                    <p className="reviewlist--votes">👍 0</p>
+                    <p className="reviewlist--votes">👍 {review.votes}</p>
                   </div>
                 </div>
               </li>
