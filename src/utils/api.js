@@ -9,10 +9,12 @@ export const getCategories = () => {
   });
 };
 
-export const getReviews = (category) => {
-  return api.get("/reviews", { params: { category } }).then(({ data }) => {
-    return data.reviews;
-  });
+export const getReviews = (category, sort_by, order_by) => {
+  return api
+    .get("/reviews", { params: { category, sort_by, order_by } })
+    .then(({ data }) => {
+      return data.reviews;
+    });
 };
 
 export const getSingleReview = (reviewId) => {

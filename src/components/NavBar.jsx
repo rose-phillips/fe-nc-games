@@ -17,7 +17,7 @@ function NavBar() {
   }
 
   return (
-    <nav className="navbar">
+    <nav>
       <p>filter by game category: </p>
       <ul className="navbar--list">
         {categories.map((category) => {

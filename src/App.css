@@ -15,7 +15,7 @@
 
 header {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .boardom-header a {
@@ -41,7 +41,7 @@ header {
 .navbar--list {
   width: 1200px;
   max-width: 95%;
-  margin: 10px auto;
+  margin: 10px 0 30px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -60,6 +60,22 @@ header {
   background-color: transparent;
 }
 
+/* SORT BY  */
+
+.reviewlist form {
+  font-size: 12px;
+}
+
+.reviewlist--sortbutton {
+  border: none;
+  border-radius: 50px;
+  background-color: transparent;
+}
+
+.reviewlist--sortbutton img {
+  width: 20px;
+}
+
 /* REVIEW LIST */
 
 .reviewlist {
@@ -67,7 +83,7 @@ header {
   max-width: 100%;
   margin: 0 auto;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -269,9 +285,6 @@ header {
 .comments--title {
   font-size: 12px;
   text-align: left;
-}
-
-.comment-adder {
 }
 
 .comment-adder textarea {

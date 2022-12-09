@@ -23,7 +23,7 @@ function Comments() {
 
     postComment(review_id, newComment).then((commentFromApi) => {
       setNewComment("");
-      setComments([...comments, commentFromApi]);
+      setComments([commentFromApi, ...comments]);
     });
   }
 
