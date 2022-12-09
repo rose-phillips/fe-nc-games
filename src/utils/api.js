@@ -10,11 +10,9 @@ export const getCategories = () => {
 };
 
 export const getReviews = (category, sort_by, order_by) => {
-  console.log(sort_by);
   return api
     .get("/reviews", { params: { category, sort_by, order_by } })
     .then(({ data }) => {
-      console.log(data.reviews);
       return data.reviews;
     });
 };

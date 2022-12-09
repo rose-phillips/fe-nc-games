@@ -3,8 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getReviews, patchReviewVote } from "../utils/api";
 import moment from "moment";
 import thumbblue from "../images/thumb-blue.png";
-import down from "../images/down.png";
-import up from "../images/up.png";
 
 function Reviewlist() {
   const [reviews, setReviews] = useState([]);
@@ -16,7 +14,6 @@ function Reviewlist() {
   const { category } = useParams();
 
   useEffect(() => {
-    console.log("rerendered");
     getReviews(category, sort, order).then((reviewsFromApi) => {
       setReviews(reviewsFromApi);
       setLoading(false);
@@ -79,20 +76,12 @@ function Reviewlist() {
         </select>
       </form>
       &nbsp;&nbsp;
-      <button
-        className="reviewlist--sortbutton"
-        value="ascending"
-        onClick={(e) => handleOrder(e.target.value)}
-      >
-        <img src={up} alt="up" />
+      <button value="ascending" onClick={(e) => handleOrder(e.target.value)}>
+        ascending
       </button>
       &nbsp;&nbsp;
-      <button
-        className="reviewlist--sortbutton"
-        value="descending"
-        onClick={(e) => handleOrder(e.target.value)}
-      >
-        <img src={down} alt="down" />
+      <button value="descending" onClick={(e) => handleOrder(e.target.value)}>
+        descending
       </button>
       <ul className="reviewlist--list">
         {reviews.map((review) => {
