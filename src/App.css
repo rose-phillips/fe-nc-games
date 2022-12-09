@@ -10,21 +10,61 @@
 
 .App {
   text-align: center;
-}
-
-header {
-  margin-top: 10px;
   margin-bottom: 40px;
 }
 
-.boardom-header h1 {
-  font-size: 64px;
+header {
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
-/* HOMEPAGE */
+.boardom-header a {
+  text-decoration: none;
+  color: #000;
+}
+
+.boardom-header--h1 {
+  font-size: 64px;
+  line-height: 68px;
+  text-shadow: -2px 2px 0px #7fff00, -4px 4px 0px #449dd1;
+}
+
+.boardom-header h2 {
+  margin-bottom: 15px;
+  line-height: 0.8em;
+  color: #222;
+  letter-spacing: 2px;
+}
+
+/* NAV BAR */
+
+.navbar--list {
+  width: 1200px;
+  max-width: 95%;
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar--list-item {
+  list-style-type: none;
+}
+
+.navbar--button {
+  margin: 5px 7px;
+  padding: 5px 9px;
+  border: 2px solid #e12ce1;
+  border-radius: 50px;
+  font-size: 12px;
+  background-color: transparent;
+}
+
+/* REVIEW LIST */
 
 .reviewlist {
-  max-width: 1200px;
+  width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-wrap: nowrap;
@@ -32,23 +72,34 @@ header {
 }
 
 .reviewlist--list {
-  max-width: 1200px;
+  width: 1000px;
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .reviewlist--reviewbox {
-  width: 300px;
+  width: 700px;
+  max-width: 95%;
   margin: 15px;
-  padding: 10px;
+  padding: 20px;
   border: 2px solid chartreuse;
-  border-radius: 3px;
+  border-radius: 10px;
   list-style-type: none;
 }
 
 .reviewlist--title-author-box {
-  height: 150px;
+  height: 125px;
+}
+
+.reviewlist--author-category-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 
 .reviewlist--author {
@@ -56,6 +107,15 @@ header {
   color: #666;
   font-size: 14px;
   font-style: italic;
+}
+
+.reviewlist--category {
+  padding: 5px 12px;
+  background-color: #fff;
+  color: #222;
+  font-size: 12px;
+  border: 1px solid #e12ce1;
+  border-radius: 50px;
 }
 
 .reviewlist--title {
@@ -69,22 +129,26 @@ header {
   text-overflow: ellipsis;
   display: -webkit-box;
   line-height: 20px;
-  max-height: 150px;
-  -webkit-line-clamp: 5;
+  max-height: 80px;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
 .reviewlist--img {
-  border-radius: 8px;
-  width: 250px;
-  height: 100px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 20px;
+  width: 600px;
+  max-width: 100%;
+  height: 200px;
   object-fit: cover;
-  margin: 5px;
+  margin-bottom: 15px;
 }
 
 .reviewlist--button {
-  margin: 0 0 15px 0;
-  padding: 5px 12px;
+  margin: 0 0 25px 0;
+  padding: 7px 35px;
   background-color: #222;
   color: #fff;
   font-size: 12px;
@@ -99,15 +163,56 @@ header {
   font-size: 12px;
 }
 
+.reviewlist--button-upvote {
+  margin-right: 5px;
+  border: none;
+  background-color: transparent;
+}
+
+.reviewlist--button-upvote img {
+  width: 20px;
+  background-color: transparent;
+}
+
 /* SINGLE REVIEW PAGE */
 
 .singlereview {
-  width: 80%;
+  width: 92%;
   max-width: 600px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  text-align: left;
+}
+
+.singlereview--reviewbox {
+  border: 3px solid chartreuse;
+  border-radius: 10px;
+  padding: 10px 35px 25px 35px;
+}
+
+.singlereview--owner-category-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.singlereview--owner-box {
+  padding: 3px;
+  margin-top: 18px;
+}
+
+.singlereview--category-box {
+  padding: 5px 12px;
+  margin-top: 12px;
+  background-color: #fff;
+  color: #222;
+  font-size: 12px;
+  border: 1px solid #e12ce1;
+  border-radius: 50px;
 }
 
 .singlereview--figure-box {
@@ -120,7 +225,9 @@ header {
   border-bottom-right-radius: 2px;
   border-top-left-radius: 2px;
   border-top-right-radius: 20px;
-  max-width: 100%;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 .singlereview--figcaption {
@@ -132,10 +239,10 @@ header {
 
 .singlereview--title {
   margin-bottom: 15px;
+  text-align: left;
 }
 
 .singlereview--comment-vote-box {
-  margin: 20px 0;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -143,55 +250,66 @@ header {
   font-size: 12px;
 }
 
-.singlereview--comments-box {
-  border: 1px solid chartreuse;
-  border-radius: 3px;
-  padding: 3px 5px;
+.singlereview-thumbsup {
+  background-color: white;
 }
-
 .singlereview--votes-box {
-  border: 1px solid chartreuse;
   border-radius: 3px;
-  padding: 3px 5px;
-}
-
-.singlereview--owner-category-box {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  font-size: 12px;
-}
-
-.singlereview--owner-box {
-  padding: 3px 5px;
-}
-
-.singlereview--category-box {
-  border: 1px solid chartreuse;
-  border-radius: 3px;
-  padding: 3px 5px;
 }
 
 /* COMMENTS */
 
 .comments {
   width: 100%;
+  margin-top: 20px;
+  text-align: center;
 }
+
+/* start form */
+.comments--title {
+  font-size: 12px;
+  text-align: left;
+}
+
+.comment-adder {
+}
+
+.comment-adder textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid #449dd1;
+  border-radius: 5px;
+  text-align: left;
+  font-size: 14px;
+  color: #222;
+  background-color: #f6f3f3;
+}
+
+.comment-adder button {
+  margin: 10px;
+  padding: 5px 20px;
+  border-radius: 50px;
+  border: 2px solid #449dd1;
+  background-color: #222;
+  color: #fff;
+}
+/* end form */
 
 .comments--list {
   width: 100%;
   list-style-type: none;
-  text-align: left;
 }
 
 .comments--commentbox {
   margin-top: 15px;
   padding: 20px;
   width: 100%;
-  border-bottom: 1px solid #449dd1;
-  border-radius: 5px;
-  background-color: #e6e4e4;
+  border-bottom: 3px solid #449dd1;
+  border-right: 1px solid #449dd1;
+  border-left: 1px solid #449dd1;
+  border-top: 1px solid #449dd1;
+  border-radius: 10px;
   text-align: left;
   font-size: 14px;
   color: #222;
@@ -207,4 +325,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.comments--body {
+  max-width: 90%;
 }
