@@ -3,20 +3,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getReviews, patchReviewVote } from "../utils/api";
 import moment from "moment";
 import thumbblue from "../images/thumb-blue.png";
+import down from "../images/down.png";
+import up from "../images/up.png";
 
 function Reviewlist() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [sort, setSort] = useState("created_at");
+  const [order, setOrder] = useState("desc");
   const navigate = useNavigate();
   const { category } = useParams();
 
   useEffect(() => {
-    getReviews(category).then((reviewsFromApi) => {
+    console.log("rerendered");
+    getReviews(category, sort, order).then((reviewsFromApi) => {
       setReviews(reviewsFromApi);
       setLoading(false);
     });
-  }, [category]);
+  }, [category, sort, order]);
+
   function handleClick(reviewId) {
     navigate(`/reviews/${reviewId}`);
   }
@@ -43,10 +49,51 @@ function Reviewlist() {
     });
   }
 
+  function handleSort(sort) {
+    setSort(sort);
+  }
+
+  function handleOrder(order) {
+    if (order === "ascending") {
+      setOrder("asc");
+    } else {
+      setOrder("desc");
+    }
+  }
+
   return loading ? (
     <p>... reviews loading</p>
   ) : (
     <div className="reviewlist">
+      <form action="">
+        <label htmlFor="">sort by: </label>
+        <select
+          name="query"
+          id="query"
+          onChange={(e) => handleSort(e.target.value)}
+        >
+          <option value="created_at">created_at</option>
+          <option value="title">title</option>
+          <option value="votes">votes</option>
+          <option value="comment_count">comment_count</option>
+        </select>
+      </form>
+      &nbsp;&nbsp;
+      <button
+        className="reviewlist--sortbutton"
+        value="ascending"
+        onClick={(e) => handleOrder(e.target.value)}
+      >
+        <img src={up} alt="up" />
+      </button>
+      &nbsp;&nbsp;
+      <button
+        className="reviewlist--sortbutton"
+        value="descending"
+        onClick={(e) => handleOrder(e.target.value)}
+      >
+        <img src={down} alt="down" />
+      </button>
       <ul className="reviewlist--list">
         {reviews.map((review) => {
           return (
@@ -55,9 +102,8 @@ function Reviewlist() {
                 <div className="reviewlist--title-author-box">
                   <div className="reviewlist--author-category-box">
                     <p className="reviewlist--author">
-                      {review.owner} posted&nbsp;
-                      {moment(review.created_at).format("MMMM Do YYYY, h:mm a")}
-                      .
+                      <span className="underline">{review.owner}</span>&nbsp;
+                      {moment(review.created_at).format("MMM Do YYYY, h:mm")}
                     </p>
                     <p className="reviewlist--category">{review.category}</p>
                   </div>
