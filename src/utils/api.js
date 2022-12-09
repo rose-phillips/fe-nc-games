@@ -50,3 +50,7 @@ export const postComment = (reviewId, newCommentBody) => {
       return data;
     });
 };
+
+export const deleteComment = (commentId) => {
+  return api.delete(`/comments/${commentId}`);
+};

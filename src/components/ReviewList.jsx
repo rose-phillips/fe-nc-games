@@ -76,11 +76,19 @@ function Reviewlist() {
         </select>
       </form>
       &nbsp;&nbsp;
-      <button value="ascending" onClick={(e) => handleOrder(e.target.value)}>
+      <button
+        className="reviewlist--sortbutton"
+        value="ascending"
+        onClick={(e) => handleOrder(e.target.value)}
+      >
         ascending
       </button>
       &nbsp;&nbsp;
-      <button value="descending" onClick={(e) => handleOrder(e.target.value)}>
+      <button
+        className="reviewlist--sortbutton"
+        value="descending"
+        onClick={(e) => handleOrder(e.target.value)}
+      >
         descending
       </button>
       <ul className="reviewlist--list">

@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getReviewComments, postComment } from "../utils/api";
+import { deleteComment, getReviewComments, postComment } from "../utils/api";
 import moment from "moment";
-import thumbblue from "../images/thumb-blue.png";
+import trash from "../images/trash.png";
 
 function Comments() {
   const { review_id } = useParams();
@@ -24,6 +24,14 @@ function Comments() {
     postComment(review_id, newComment).then((commentFromApi) => {
       setNewComment("");
       setComments([commentFromApi, ...comments]);
+    });
+  }
+
+  function handleClick(commentId, review_id) {
+    deleteComment(commentId).then(() => {
+      getReviewComments(review_id).then((commentsFromApi) => {
+        setComments([...commentsFromApi]);
+      });
     });
   }
 
@@ -58,17 +66,17 @@ function Comments() {
 
                 <div className="comments--body-votes">
                   <p className="comments--body">{comment.body} </p>
-                  <p className="comments--votes">
-                    <button className="reviewlist--button-upvote">
-                      {" "}
-                      <img
-                        className="singlereview-thumbsup"
-                        src={thumbblue}
-                        alt="thumb up"
-                      />
-                    </button>
-                    {comment.votes}
-                  </p>
+
+                  <button
+                    name
+                    value="delete"
+                    onClick={() =>
+                      handleClick(comment.comment_id, comment.review_id)
+                    }
+                    className="comments--delete"
+                  >
+                    <img src={trash} alt="delete" value="delete" />
+                  </button>
                 </div>
               </li>
             </div>
