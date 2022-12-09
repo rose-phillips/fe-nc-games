@@ -37,6 +37,15 @@ header {
 }
 
 /* NAV BAR */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar p {
+  width: 100%;
+}
 
 .navbar--list {
   width: 1200px;
@@ -67,13 +76,10 @@ header {
 }
 
 .reviewlist--sortbutton {
-  border: none;
+  border: 1px solid #222;
+  padding: 2px 10px;
   border-radius: 50px;
   background-color: transparent;
-}
-
-.reviewlist--sortbutton img {
-  width: 20px;
 }
 
 /* REVIEW LIST */
@@ -179,12 +185,14 @@ header {
   font-size: 12px;
 }
 
+.comments--delete,
 .reviewlist--button-upvote {
   margin-right: 5px;
   border: none;
   background-color: transparent;
 }
 
+.comments--delete img,
 .reviewlist--button-upvote img {
   width: 20px;
   background-color: transparent;
