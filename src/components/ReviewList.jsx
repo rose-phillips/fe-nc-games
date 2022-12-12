@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getReviews, patchReviewVote } from "../utils/api";
 import moment from "moment";
 import thumbblue from "../images/thumb-blue.png";
+import up from "../images/up.png";
+import down from "../images/down.png";
 
 function Reviewlist() {
   const [reviews, setReviews] = useState([]);
@@ -24,10 +26,12 @@ function Reviewlist() {
     navigate(`/reviews/${reviewId}`);
   }
 
-  function handleVote(reviewId) {
+  function handleVote(reviewId, event) {
     setReviews((currentReviews) => {
       return currentReviews.map((review) => {
         if (review.review_id === reviewId) {
+          event.disabled = true;
+          console.log(event.disabled);
           return { ...review, votes: review.votes + 1 };
         }
         return review;
@@ -62,34 +66,27 @@ function Reviewlist() {
     <p>... reviews loading</p>
   ) : (
     <div className="reviewlist">
-      <form action="">
+      <form className="sort-form" action="">
         <label htmlFor="">sort by: </label>
+
         <select
-          name="query"
-          id="query"
+          name="sort"
+          id="sort"
           onChange={(e) => handleSort(e.target.value)}
         >
-          <option value="created_at">created_at</option>
+          <option value="created_at">date posted</option>
           <option value="title">title</option>
           <option value="votes">votes</option>
-          <option value="comment_count">comment_count</option>
+          <option value="comment_count">comments</option>
         </select>
       </form>
       &nbsp;&nbsp;
-      <button
-        className="reviewlist--sortbutton"
-        value="ascending"
-        onClick={(e) => handleOrder(e.target.value)}
-      >
-        ascending
+      <button value="ascending" onClick={(e) => handleOrder(e.target.alt)}>
+        <img className="icon" src={up} alt="ascending" />
       </button>
       &nbsp;&nbsp;
-      <button
-        className="reviewlist--sortbutton"
-        value="descending"
-        onClick={(e) => handleOrder(e.target.value)}
-      >
-        descending
+      <button value="descending" onClick={(e) => handleOrder(e.target.alt)}>
+        <img className="icon" src={down} alt="descending" />
       </button>
       <ul className="reviewlist--list">
         {reviews.map((review) => {
@@ -100,9 +97,8 @@ function Reviewlist() {
                   <div className="reviewlist--author-category-box">
                     <p className="reviewlist--author">
                       <span className="underline">{review.owner}</span>&nbsp;
-                      {moment(review.created_at).format("MMM Do YYYY, h:mm")}
+                      {moment(review.created_at).format("ll")}
                     </p>
-                    <p className="reviewlist--category">{review.category}</p>
                   </div>
 
                   <p className="reviewlist--body">
@@ -134,10 +130,13 @@ function Reviewlist() {
                   <div className="reviewlist--votes-box">
                     <p className="reviewlist--votes">
                       <button
-                        onClick={() => handleVote(review.review_id)}
+                        disabled
+                        onClick={(e) =>
+                          handleVote(review.review_id, e.currentTarget)
+                        }
                         className="reviewlist--button-upvote"
                       >
-                        <img src={thumbblue} alt="thumb up" />
+                        <img src={thumbblue} alt="upvote" />
                       </button>
                       {review.votes}
                     </p>
